@@ -51,7 +51,7 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun onFinish() {
-                //Finish the quiz
+
 
             }
         }.start()
@@ -86,7 +86,10 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
 
         val clickedBtn = view as Button
         if (clickedBtn.id== R.id.next_btn){
-            //next button is clicked
+            if(selectedAnswer.isEmpty()){
+                Toast.makeText(applicationContext,"Porfavor oprime una respuesta para continuar",Toast.LENGTH_SHORT).show()
+                return;
+            }
             if(selectedAnswer == questionModelList[currentQuestionIndex].correct){
                 score++
                 Log.i("Score of quiz",score.toString())
@@ -94,7 +97,7 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             currentQuestionIndex++
             loadQuestions()
         }else{
-            //options button is clicked
+
             selectedAnswer = clickedBtn.text.toString()
             clickedBtn.setBackgroundColor(getColor(R.color.orange))
         }
@@ -118,10 +121,10 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             finishBtn.setOnClickListener(){
                 finish()
             }
-            // AlertDialog.Builder(this)
-               // .setView(dialogBinding.root)
-               // .setCancelable(false)
-               // .show()
+             AlertDialog.Builder(this@QuizActivity)
+                .setView(dialogBinding.root)
+                .setCancelable(false)
+                .show()
         }
     }
 }

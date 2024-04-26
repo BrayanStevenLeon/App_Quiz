@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "6189178900",
+    "firebase_url": "https://quizonline-53d54-default-rtdb.firebaseio.com",
+    "project_id": "quizonline-53d54",
+    "storage_bucket": "quizonline-53d54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6189178900:android:38aa2baf3dd003fd678701",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-BjbdzKFgBou5gZDSf_YkMFEw0fArUS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6189178900:android:af7e151b60084c4c678701",
+        "android_client_info": {
+          "package_name": "com.example.mycalculadora"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-BjbdzKFgBou5gZDSf_YkMFEw0fArUS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
