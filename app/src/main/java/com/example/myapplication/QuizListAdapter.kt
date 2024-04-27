@@ -9,7 +9,7 @@ import com.example.myapplication.databinding.QuizItemRecyclerRowBinding
 class QuizListAdapter (private val quizModelList : List<QuizModel>) :
     RecyclerView.Adapter<QuizListAdapter.MyViewHolder>() {
 
-    class MyViewHolder(private val binding: QuizItemRecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(val binding: QuizItemRecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(model : QuizModel){
             binding.apply{
                 quizTitleText.text = model.title
