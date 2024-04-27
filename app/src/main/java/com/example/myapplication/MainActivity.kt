@@ -34,18 +34,18 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     private fun getDataFromFirebase() {
         binding.progressBar.visibility = View.VISIBLE
-            FirebaseDatabase.getInstance().reference
-                .get()
-                .addOnSuccessListener { dataSnapshot ->
-                    if (dataSnapshot.exists()) {
-                        for (snapshot in dataSnapshot.children) {
-                            val quizModel = snapshot.getValue(QuizModel::class.java)
-                            if (quizModel != null) {
-                                quizModelList.add(quizModel)
-                            }
+        FirebaseDatabase.getInstance().reference
+            .get()
+            .addOnSuccessListener { dataSnapshot ->
+                if (dataSnapshot.exists()) {
+                    for (snapshot in dataSnapshot.children) {
+                        val quizModel = snapshot.getValue(QuizModel::class.java)
+                        if (quizModel != null) {
+                            quizModelList.add(quizModel)
                         }
                     }
-                    setupRecyclerView()
                 }
-        }
+                setupRecyclerView()
+            }
     }
+}

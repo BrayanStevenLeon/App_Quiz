@@ -64,16 +64,16 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
-     binding.apply {
-         questionIndicatorTextview.text = "Question ${currentQuestionIndex+1}/ ${questionModelList.size} "
-         questionProgressIndicator.progress =
-             ( currentQuestionIndex.toFloat() / questionModelList.size.toFloat() * 100 ).toInt()
-         questionTextview.text = questionModelList[currentQuestionIndex].question
-         btn0.text = questionModelList[currentQuestionIndex].options[0]
-         btn1.text = questionModelList[currentQuestionIndex].options[1]
-         btn2.text = questionModelList[currentQuestionIndex].options[2]
-         btn3.text = questionModelList[currentQuestionIndex].options[3]
-     }
+        binding.apply {
+            questionIndicatorTextview.text = "Question ${currentQuestionIndex+1}/ ${questionModelList.size} "
+            questionProgressIndicator.progress =
+                ( currentQuestionIndex.toFloat() / questionModelList.size.toFloat() * 100 ).toInt()
+            questionTextview.text = questionModelList[currentQuestionIndex].question
+            btn0.text = questionModelList[currentQuestionIndex].options[0]
+            btn1.text = questionModelList[currentQuestionIndex].options[1]
+            btn2.text = questionModelList[currentQuestionIndex].options[2]
+            btn3.text = questionModelList[currentQuestionIndex].options[3]
+        }
     }
 
     override fun onClick(view: View?) {
@@ -102,26 +102,29 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             clickedBtn.setBackgroundColor(getColor(R.color.orange))
         }
     }
+
     private fun finishQuiz(){
         val totalQuestions = questionModelList.size
-        val percentage = ((score.toFloat() / totalQuestions.toFloat()) * 100 ).toInt()
+        val percentage = Funciones.calcularPorcentaje(score, totalQuestions)
+        val message = Funciones.mensajeResultado(percentage)
+
         val dialogBinding = ScoreDialogBinding.inflate(layoutInflater)
         dialogBinding.apply {
             scoreProgressIndicator.progress = percentage
             scoreProgressText.text = "$percentage %"
+            scoreTitle.text = message
 
             if (percentage > 60){
-                scoreTitle.text = "Felicidades! Has pasado la prueba"
                 scoreTitle.setTextColor(Color.BLUE)
             }else{
-                scoreTitle.text = "Mmm! examen reprobado"
                 scoreTitle.setTextColor(Color.RED)
             }
+
             scoreSubtitle.text = "$score de $totalQuestions preguntas estan correctas"
             finishBtn.setOnClickListener(){
                 finish()
             }
-             AlertDialog.Builder(this@QuizActivity)
+            AlertDialog.Builder(this@QuizActivity)
                 .setView(dialogBinding.root)
                 .setCancelable(false)
                 .show()
