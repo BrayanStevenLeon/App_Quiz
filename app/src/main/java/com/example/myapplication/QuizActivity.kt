@@ -102,21 +102,24 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             clickedBtn.setBackgroundColor(getColor(R.color.orange))
         }
     }
+
     private fun finishQuiz(){
         val totalQuestions = questionModelList.size
-        val percentage = ((score.toFloat() / totalQuestions.toFloat()) * 100 ).toInt()
+        val percentage = Funciones.calcularPorcentaje(score, totalQuestions)
+        val message = Funciones.mensajeResultado(percentage)
+
         val dialogBinding = ScoreDialogBinding.inflate(layoutInflater)
         dialogBinding.apply {
             scoreProgressIndicator.progress = percentage
             scoreProgressText.text = "$percentage %"
+            scoreTitle.text = message
 
             if (percentage > 60){
-                scoreTitle.text = "Felicidades! Has pasado la prueba"
                 scoreTitle.setTextColor(Color.BLUE)
             }else{
-                scoreTitle.text = "Mmm! examen reprobado"
                 scoreTitle.setTextColor(Color.RED)
             }
+
             scoreSubtitle.text = "$score de $totalQuestions preguntas estan correctas"
             finishBtn.setOnClickListener(){
                 finish()
